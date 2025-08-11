@@ -7030,6 +7030,35 @@
     });
   }
 
+  // js/components/talent-banner.js
+  function talentBanner() {
+    const talentMenuItems = document.querySelectorAll(".talent-menu a");
+    const talentMenuWrapper = document.querySelector(".talent-menu");
+    if (!talentMenuItems > 0)
+      return;
+    const talentImages = document.querySelectorAll(".talent-banner-images img");
+    if (!talentMenuItems > 0)
+      return;
+    talentMenuItems.forEach((item, index) => {
+      item.addEventListener("mouseover", () => {
+        ;
+        [...talentImages].filter((_, i) => i !== index).forEach(
+          (image) => gsapWithCSS.to(image, { opacity: 0, duration: 0.5, ease: "power2.out" })
+        );
+        gsapWithCSS.to(talentImages[index], {
+          opacity: 1,
+          duration: 0.5,
+          ease: "power2.out"
+        });
+      });
+    });
+    talentMenuWrapper.addEventListener("mouseleave", () => {
+      talentImages.forEach(
+        (image) => gsapWithCSS.to(image, { opacity: 0, duration: 0.4, ease: "power2.out" })
+      );
+    });
+  }
+
   // node_modules/lenis/dist/lenis.mjs
   var version = "1.3.8";
   function clamp3(min, input, max) {
@@ -7979,7 +8008,7 @@
     constructor(options = {}) {
       this.options = {
         selector: "[parallax-effect]",
-        imageSelector: "img",
+        imageSelector: "img:not(.talent-banner-images img)",
         scroller: "body",
         speed: 0.2,
         ease: "none",
@@ -8108,7 +8137,6 @@
       talentPopup,
       {
         opacity: 1,
-        y: "0%",
         pointerEvents: "auto",
         duration: 1,
         ease: "expo.inOut"
@@ -8291,63 +8319,21 @@
   gsapWithCSS.registerPlugin(ScrollTrigger2);
   function talentSwiper() {
     const talentImages = document.querySelectorAll("[talent-image]");
-    const talentText = document.querySelectorAll("[talent-text]");
-    const progressBar = document.querySelector(".scroll-percentage");
-    const scrollIndex = document.querySelectorAll("[scroll-index]");
+    const talentButtons = document.querySelectorAll("[talent-button]");
     if (talentImages.length === 0)
       return;
-    ScrollTrigger2.create({
-      trigger: "[talent-swiper]",
-      start: "top top",
-      end: "bottom bottom",
-      pin: "[talent-swiper-pin]",
-      pinSpacing: false,
-      pinSpacer: false,
-      onUpdate: (self) => {
-        const progress = self.progress;
-        progressBar.style.height = `${progress * 100}%`;
-      }
-    });
-    talentImages.forEach((image, index) => {
-      const insideItems = talentText[index].querySelectorAll(".items");
-      const tl = gsapWithCSS.timeline({
-        scrollTrigger: {
-          trigger: image,
-          start: "top 50%",
-          end: "bottom 50%",
-          toggleActions: "play complete none reverse"
-        },
-        defaults: { ease: "power2.inOut" }
-      });
-      const insideItemsLast = talentText[index - 1]?.querySelectorAll(".items");
-      tl.fromTo(
-        [...insideItems, scrollIndex[index]],
-        {
-          y: 18,
-          opacity: 0,
-          pointerEvents: "none"
-        },
-        {
-          y: 0,
-          opacity: 1,
-          stagger: 0.05,
-          duration: 0.55,
-          pointerEvents: "auto"
-        }
-      );
-      if (insideItemsLast) {
-        tl.to(
-          [...insideItemsLast, scrollIndex[index - 1]],
-          {
-            pointerEvents: "none",
-            y: -18,
-            opacity: 0,
-            stagger: 0.05,
-            duration: 0.55
-          },
-          "<="
+    talentButtons.forEach((btn, index) => {
+      btn.addEventListener("mouseover", () => {
+        ;
+        [...talentImages].filter((_, i) => i !== index).forEach(
+          (image) => gsapWithCSS.to(image, { opacity: 0, duration: 0.4, ease: "power2.out" })
         );
-      }
+        gsapWithCSS.to(talentImages[index], {
+          opacity: 1,
+          duration: 0.4,
+          ease: "power2.out"
+        });
+      });
     });
   }
 
@@ -8613,6 +8599,7 @@
     footerAnimation();
     talentSwiper();
     initTalentPopup();
+    talentBanner();
   });
 })();
 /*!
