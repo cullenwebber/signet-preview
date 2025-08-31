@@ -16146,7 +16146,7 @@
     new Swiper(swiper, {
       loop: true,
       autoplay: true,
-      speed: 800,
+      speed: 1500,
       slidesPerView: 1
     });
   }
