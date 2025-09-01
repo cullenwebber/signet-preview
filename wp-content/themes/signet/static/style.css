@@ -563,11 +563,11 @@ video {
   white-space: nowrap;
   border-width: 0;
 }
-.pointer-events-none {
-  pointer-events: none;
-}
 .\!pointer-events-none {
   pointer-events: none !important;
+}
+.pointer-events-none {
+  pointer-events: none;
 }
 .\!fixed {
   position: fixed !important;
@@ -1036,6 +1036,9 @@ video {
 .\!pt-16 {
   padding-top: 4rem !important;
 }
+.\!pt-28 {
+  padding-top: 7rem !important;
+}
 .\!pt-36 {
   padding-top: 9rem !important;
 }
@@ -1059,15 +1062,6 @@ video {
 }
 .pt-4 {
   padding-top: 1rem;
-}
-.\!pt-0 {
-  padding-top: 0px !important;
-}
-.\!pt-24 {
-  padding-top: 6rem !important;
-}
-.\!pt-28 {
-  padding-top: 7rem !important;
 }
 .text-left {
   text-align: left;
@@ -2309,24 +2303,14 @@ section#shadow-host-companion {
     gap: 0.5rem;
   }
 
-  .max-sm\:px-0 {
-    padding-left: 0px;
-    padding-right: 0px;
+  .max-sm\:px-1 {
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
   }
 
   .max-sm\:px-4 {
     padding-left: 1rem;
     padding-right: 1rem;
-  }
-
-  .max-sm\:px-2 {
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
-  }
-
-  .max-sm\:px-1 {
-    padding-left: 0.25rem;
-    padding-right: 0.25rem;
   }
 
   .max-sm\:\!text-xs {
@@ -2398,10 +2382,6 @@ section#shadow-host-companion {
 
   .sm\:\!pt-24 {
     padding-top: 6rem !important;
-  }
-
-  .sm\:\!pt-28 {
-    padding-top: 7rem !important;
   }
 }
 @media (min-width: 768px) {
@@ -2541,16 +2521,16 @@ section#shadow-host-companion {
     padding-bottom: 2rem;
   }
 
+  .lg\:\!pt-24 {
+    padding-top: 6rem !important;
+  }
+
   .lg\:\!pt-52 {
     padding-top: 13rem !important;
   }
 
   .lg\:pb-16 {
     padding-bottom: 4rem;
-  }
-
-  .lg\:\!pt-24 {
-    padding-top: 6rem !important;
   }
 }
 @media (min-width: 1280px) {
